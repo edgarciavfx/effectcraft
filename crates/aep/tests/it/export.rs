@@ -5,6 +5,7 @@ mod helpers;
 
 mod built;
 mod ease;
+mod effect_table;
 mod effects;
 mod footage;
 mod masks;
