@@ -1185,7 +1185,7 @@ fn plan_layer(cx: &PlanCx<'_>, at: CompAt<'_>, cp: &CompPlan, layer: &Layer, col
         solo: layer.switches.solo,
         locked: layer.switches.locked,
         shy: layer.switches.shy,
-        collapse: layer.switches.collapse || is_shape,
+        collapse: layer.switches.collapse || is_shape || is_text,
         effects: layer.switches.effects,
         motion_blur: layer.switches.motion_blur,
         guide: layer.switches.guide,
