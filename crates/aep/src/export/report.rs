@@ -7,9 +7,8 @@ use std::collections::BTreeMap;
 
 use serde::{Deserialize, Serialize};
 
-/// Most example lines kept per loss category (the count is always exact); the same as the import
-/// report's.
-pub const MAX_DETAILS: usize = crate::import::MAX_DETAILS;
+/// Most example lines kept per loss category (the count is always exact).
+pub const MAX_DETAILS: usize = usize::MAX; // asus fork: bridge.py checks every loss
 
 /// Why a piece of the project did not arrive in the `.aep`, or arrived changed.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
@@ -296,18 +295,5 @@ mod tests {
         assert_eq!(report.summary(), "effects: 2, rounded times: 1");
         let empty = Collector::default().finish();
         assert_eq!((empty.total_losses(), empty.is_lossless(), empty.summary()), (0, true, String::new()));
-    }
-
-    /// Details stop at the cap.
-    #[test]
-    fn details_stop_at_the_cap() {
-        let mut col = Collector::default();
-        for i in 0..MAX_DETAILS + 5 {
-            col.lose(LossCategory::Masks, format!("mask {i}"));
-        }
-        let report = col.finish();
-        assert_eq!(report.count(LossCategory::Masks), MAX_DETAILS + 5);
-        assert_eq!(report.losses[0].details.len(), MAX_DETAILS);
-        assert_eq!(report.losses[0].unlisted, 5);
     }
 }
