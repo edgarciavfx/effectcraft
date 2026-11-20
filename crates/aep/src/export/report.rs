@@ -8,7 +8,7 @@ use std::collections::BTreeMap;
 use serde::{Deserialize, Serialize};
 
 /// Most example lines kept per loss category (the count is always exact).
-pub const MAX_DETAILS: usize = 20;
+pub const MAX_DETAILS: usize = usize::MAX; // asus fork: bridge.py checks every loss
 
 /// Why a piece of the project did not arrive in the `.aep`, or arrived changed.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
