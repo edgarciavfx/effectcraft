@@ -4,7 +4,7 @@ name: CI
 # suite's shared gate workflow in craft-common-actions.
 on:
   push:
-    branches: [main, asus-fixes]
+    branches: [main, asus-fixes, asus-fixes-0.25.1]
   pull_request:
   workflow_dispatch:
 
